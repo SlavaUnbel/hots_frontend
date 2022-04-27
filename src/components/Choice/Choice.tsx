@@ -29,7 +29,12 @@ const Choice: React.FC = () => {
     useEffect(() => {
         dispatch(fetchMaps());
         dispatch(fetchHeroClasses());
+<<<<<<< HEAD
     }, [dispatch]);
+=======
+        // eslint-disable-next-line
+    }, []);
+>>>>>>> 0fe36c47c4fdd02ee31681a674cb200545876f48
 
     const handleChangeMap = (
         _: React.SyntheticEvent<Element, Event>,
