@@ -1,3 +1,3 @@
-import './choice.css';
+import './choice.scss';
 
 export { default } from './Choice';

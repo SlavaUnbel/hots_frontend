@@ -6,6 +6,7 @@ const App: React.FC = () => {
     return (
         <Routes>
             <Route index element={<Choice />} />
+            <Route path="/picked/*" element={<h1>Picked page</h1>} />
         </Routes>
     );
 };
