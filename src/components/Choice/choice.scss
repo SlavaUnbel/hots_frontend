@@ -1,0 +1,97 @@
+.choice-wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    .logo-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        img {
+            width: 100px;
+            height: 100px;
+            background: #000;
+        }
+    }
+    
+    .choice-selects {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .choice-submit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .dot-collision {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #fff;
+          }
+          
+          .dot-collision::before, .dot-collision::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 0;
+          }
+          
+          .dot-collision::before {
+            left: -10px;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #fff;
+            animation: dotCollisionBefore 2s infinite ease-in;
+          }
+          
+          .dot-collision::after {
+            left: 10px;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #fff;
+            animation: dotCollisionAfter 2s infinite ease-in;
+            animation-delay: 1s;
+          }
+          
+          @keyframes dotCollisionBefore {
+            0%,
+            50%,
+            75%,
+            100% {
+              transform: translateX(0);
+            }
+            25% {
+              transform: translateX(-10px);
+            }
+          }
+          
+          @keyframes dotCollisionAfter {
+            0%,
+            50%,
+            75%,
+            100% {
+              transform: translateX(0);
+            }
+            25% {
+              transform: translateX(10px);
+            }
+          }
+
+        button {
+            width: max-content;
+            height: 36px;
+            padding: 8px 24px;
+        }
+    }
+}
