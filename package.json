@@ -44,10 +44,11 @@
   },
   "prettier": {
     "singleQuote": true,
+    "jsxSingleQuote": true,
     "printWidth": 100,
     "useTabs": false,
     "semi": true,
-    "trailingComma": "none",
+    "trailingComma": "all",
     "bracketSpacing": true
   },
   "browserslist": {

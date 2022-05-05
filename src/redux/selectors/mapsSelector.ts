@@ -9,7 +9,7 @@ export const mapsStateSelector = (state: ApplicationState) => {
 
 export const hasNoSelectedMapSelector = createSelector(mapsStateSelector, (maps) => {
   const {
-    selectedMap: { label }
+    selectedMap: { label },
   } = maps;
 
   return !label;

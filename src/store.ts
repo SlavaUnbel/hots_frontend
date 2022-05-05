@@ -4,7 +4,7 @@ import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
 
 const store = configureStore({
   reducer: createRootReducer(),
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
 export default store;

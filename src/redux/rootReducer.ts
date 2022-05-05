@@ -10,7 +10,7 @@ export type ApplicationState = {
 const rootReducer = () =>
   combineReducers<ApplicationState>({
     maps: mapsReducer,
-    heroClasses: heroClassesReducer
+    heroClasses: heroClassesReducer,
   });
 
 export default rootReducer;

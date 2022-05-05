@@ -18,23 +18,23 @@ export const initialState: MapsState = {
     mapList: [],
     isFetching: false,
     isFetchError: false,
-    isFetchSuccess: false
+    isFetchSuccess: false,
   },
   selectedMap: {
-    label: ''
-  }
+    label: '',
+  },
 };
 
 export const fetchMaps = createAsyncThunk('maps/FETCH_MAPS', async (_, { dispatch }) =>
   axios(allMapsEndpoint).then(({ data }: AxiosResponse<MapList[]>) => {
     const mapListToLabels = data.map(({ mapName }) => ({
-      label: mapName
+      label: mapName,
     }));
     dispatch(setMapList(mapListToLabels));
 
     const allMaps = mapListToLabels.find(({ label }) => label === 'All maps');
     allMaps && dispatch(setSelectedMap(allMaps));
-  })
+  }),
 );
 
 export const setMapList = createAction<{ label: string }[]>('maps/SET_MAP_LIST');
@@ -48,8 +48,8 @@ export default createReducer(initialState, (builder) => {
         ...state.maps,
         isFetching: true,
         isFetchError: false,
-        isFetchSuccess: false
-      }
+        isFetchSuccess: false,
+      },
     }))
     .addCase(fetchMaps.fulfilled, (state) => ({
       ...state,
@@ -57,8 +57,8 @@ export default createReducer(initialState, (builder) => {
         ...state.maps,
         isFetching: false,
         isFetchError: false,
-        isFetchSuccess: true
-      }
+        isFetchSuccess: true,
+      },
     }))
     .addCase(fetchMaps.rejected, (state) => ({
       ...state,
@@ -66,18 +66,18 @@ export default createReducer(initialState, (builder) => {
         mapList: [],
         isFetching: false,
         isFetchError: true,
-        isFetchSuccess: false
-      }
+        isFetchSuccess: false,
+      },
     }))
     .addCase(setMapList, (state, action) => ({
       ...state,
       maps: {
         ...state.maps,
-        mapList: action.payload
-      }
+        mapList: action.payload,
+      },
     }))
     .addCase(setSelectedMap, (state, action) => ({
       ...state,
-      selectedMap: action.payload
+      selectedMap: action.payload,
     }));
 });

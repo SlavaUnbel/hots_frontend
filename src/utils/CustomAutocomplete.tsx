@@ -2,7 +2,7 @@ import {
   Autocomplete,
   AutocompleteRenderInputParams,
   CircularProgress,
-  TextField
+  TextField,
 } from '@mui/material';
 import React from 'react';
 
@@ -11,13 +11,21 @@ interface Props {
   loading: boolean;
   value: { label: string };
   label: string;
+  className: string;
   onChange: (
     event: React.SyntheticEvent<Element, Event>,
-    newValue: { label: string } | null
+    newValue: { label: string } | null,
   ) => void;
 }
 
-const CustomAutocomplete: React.FC<Props> = ({ options, loading, value, label, onChange }) => {
+const CustomAutocomplete: React.FC<Props> = ({
+  options,
+  loading,
+  value,
+  label,
+  className,
+  onChange,
+}) => {
   const autocompleteMainProps = {
     options,
     value,
@@ -28,21 +36,22 @@ const CustomAutocomplete: React.FC<Props> = ({ options, loading, value, label, o
         label={label}
         InputProps={{
           ...params.InputProps,
-          startAdornment: loading ? <CircularProgress color="inherit" size={20} /> : null
+          startAdornment: loading ? <CircularProgress color='inherit' size={20} /> : null,
         }}
       />
-    )
+    ),
   };
 
   const autocompleteOtherProps = {
     loading,
+    className,
     fullWidth: true,
     clearIcon: false,
     clearOnBlur: true,
     blurOnSelect: true,
     autoHighlight: true,
     disablePortal: true,
-    openOnFocus: true
+    openOnFocus: true,
   };
 
   return <Autocomplete {...autocompleteMainProps} {...autocompleteOtherProps} />;

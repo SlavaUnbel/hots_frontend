@@ -9,7 +9,7 @@ export const heroClassesStateSelector = (state: ApplicationState) => {
 
 export const hasNoSelectedHeroClassSelector = createSelector(heroClassesStateSelector, (maps) => {
   const {
-    selectedClass: { label }
+    selectedClass: { label },
   } = maps;
 
   return !label;

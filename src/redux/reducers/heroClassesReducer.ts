@@ -18,11 +18,11 @@ export const initialState: HeroClassesState = {
     classList: [],
     isFetching: false,
     isFetchError: false,
-    isFetchSuccess: false
+    isFetchSuccess: false,
   },
   selectedClass: {
-    label: ''
-  }
+    label: '',
+  },
 };
 
 export const fetchHeroClasses = createAsyncThunk(
@@ -30,20 +30,20 @@ export const fetchHeroClasses = createAsyncThunk(
   async (_, { dispatch }) =>
     axios(allHeroClassesEndpoint).then(({ data }: AxiosResponse<HeroClassesList[]>) => {
       const mapListToLabels = data.map(({ heroClassName }) => ({
-        label: heroClassName
+        label: heroClassName,
       }));
       dispatch(setHeroClassesList(mapListToLabels));
 
       const allClasses = mapListToLabels.find(({ label }) => label === 'All classes');
       allClasses && dispatch(setSelectedHeroClass(allClasses));
-    })
+    }),
 );
 
 export const setHeroClassesList = createAction<{ label: string }[]>(
-  'heroClasses/SET_HERO_CLASSES_LIST'
+  'heroClasses/SET_HERO_CLASSES_LIST',
 );
 export const setSelectedHeroClass = createAction<{ label: string }>(
-  'heroClasses/SET_SELECTED_HERO_CLASS'
+  'heroClasses/SET_SELECTED_HERO_CLASS',
 );
 
 export default createReducer(initialState, (builder) => {
@@ -54,8 +54,8 @@ export default createReducer(initialState, (builder) => {
         ...state.heroClasses,
         isFetching: true,
         isFetchError: false,
-        isFetchSuccess: false
-      }
+        isFetchSuccess: false,
+      },
     }))
     .addCase(fetchHeroClasses.fulfilled, (state) => ({
       ...state,
@@ -63,8 +63,8 @@ export default createReducer(initialState, (builder) => {
         ...state.heroClasses,
         isFetching: false,
         isFetchError: false,
-        isFetchSuccess: true
-      }
+        isFetchSuccess: true,
+      },
     }))
     .addCase(fetchHeroClasses.rejected, (state) => ({
       ...state,
@@ -72,18 +72,18 @@ export default createReducer(initialState, (builder) => {
         classList: [],
         isFetching: false,
         isFetchError: true,
-        isFetchSuccess: false
-      }
+        isFetchSuccess: false,
+      },
     }))
     .addCase(setHeroClassesList, (state, action) => ({
       ...state,
       heroClasses: {
         ...state.heroClasses,
-        classList: action.payload
-      }
+        classList: action.payload,
+      },
     }))
     .addCase(setSelectedHeroClass, (state, action) => ({
       ...state,
-      selectedClass: action.payload
+      selectedClass: action.payload,
     }));
 });
