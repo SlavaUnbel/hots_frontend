@@ -25,19 +25,15 @@ export const initialState: MapsState = {
   },
 };
 
-export const fetchMaps = createAsyncThunk('maps/FETCH_MAPS', async (_, { dispatch }) =>
-  axios(allMapsEndpoint).then(({ data }: AxiosResponse<MapList[]>) => {
-    const mapListToLabels = data.map(({ mapName }) => ({
-      label: mapName,
-    }));
-    dispatch(setMapList(mapListToLabels));
+export const fetchMaps = createAsyncThunk('maps/FETCH_MAPS', async () => {
+  const { data }: AxiosResponse<MapList[]> = await axios(allMapsEndpoint);
+  const mapListToLabels = data.map(({ mapName }) => ({
+    label: mapName,
+  }));
 
-    const allMaps = mapListToLabels.find(({ label }) => label === 'All maps');
-    allMaps && dispatch(setSelectedMap(allMaps));
-  }),
-);
+  return mapListToLabels;
+});
 
-export const setMapList = createAction<{ label: string }[]>('maps/SET_MAP_LIST');
 export const setSelectedMap = createAction<{ label: string }>('maps/SET_SELECTED_MAP');
 
 export default createReducer(initialState, (builder) => {
@@ -45,35 +41,23 @@ export default createReducer(initialState, (builder) => {
     .addCase(fetchMaps.pending, (state) => ({
       ...state,
       maps: {
-        ...state.maps,
+        ...initialState.maps,
         isFetching: true,
-        isFetchError: false,
-        isFetchSuccess: false,
       },
     }))
-    .addCase(fetchMaps.fulfilled, (state) => ({
+    .addCase(fetchMaps.fulfilled, (state, action) => ({
       ...state,
       maps: {
-        ...state.maps,
-        isFetching: false,
-        isFetchError: false,
+        ...initialState.maps,
+        mapList: action.payload,
         isFetchSuccess: true,
       },
     }))
     .addCase(fetchMaps.rejected, (state) => ({
       ...state,
       maps: {
-        mapList: [],
-        isFetching: false,
+        ...initialState.maps,
         isFetchError: true,
-        isFetchSuccess: false,
-      },
-    }))
-    .addCase(setMapList, (state, action) => ({
-      ...state,
-      maps: {
-        ...state.maps,
-        mapList: action.payload,
       },
     }))
     .addCase(setSelectedMap, (state, action) => ({

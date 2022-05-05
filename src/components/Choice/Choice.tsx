@@ -1,4 +1,4 @@
-import { Grid, Box, Container, Typography } from '@mui/material';
+import { Grid, Box, Container } from '@mui/material';
 import React, { useEffect } from 'react';
 import { mapsStateSelector, hasNoSelectedMapSelector } from '../../redux/selectors/mapsSelector';
 import { fetchMaps, setSelectedMap } from '../../redux/reducers/mapsReducer';
@@ -53,9 +53,6 @@ const Choice: React.FC = () => {
 
   const handleSubmitChoice = (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (isDisabled) return;
-
     navigate('/picked');
   };
 
@@ -93,13 +90,11 @@ const Choice: React.FC = () => {
             </Grid>
           </Grid>
 
-          <div className='choice-submit' onClick={handleSubmitChoice}>
-            {isFetchingMaps ? (
-              <div className='dot-collision' />
-            ) : (
-              <Typography className='choice-submit-text'>Make a match</Typography>
-            )}
-          </div>
+          <button
+            type='submit'
+            className={`choice-submit ${isDisabled ? 'choice-submit-disabled' : ''}`}
+            disabled={isDisabled}
+          />
         </form>
       </Container>
     </Box>
