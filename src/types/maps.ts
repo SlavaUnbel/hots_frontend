@@ -1,4 +1,4 @@
 export type MapList = {
-    _id: string;
-    mapName: string;
+  _id: string;
+  mapName: string;
 };

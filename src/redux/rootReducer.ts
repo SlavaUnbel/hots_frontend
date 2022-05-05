@@ -3,14 +3,14 @@ import heroClassesReducer, { HeroClassesState } from './reducers/heroClassesRedu
 import mapsReducer, { MapsState } from './reducers/mapsReducer';
 
 export type ApplicationState = {
-    maps: MapsState;
-    heroClasses: HeroClassesState;
+  maps: MapsState;
+  heroClasses: HeroClassesState;
 };
 
 const rootReducer = () =>
-    combineReducers<ApplicationState>({
-        maps: mapsReducer,
-        heroClasses: heroClassesReducer
-    });
+  combineReducers<ApplicationState>({
+    maps: mapsReducer,
+    heroClasses: heroClassesReducer,
+  });
 
 export default rootReducer;

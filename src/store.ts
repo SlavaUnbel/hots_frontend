@@ -3,8 +3,8 @@ import createRootReducer from './redux/rootReducer';
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
 
 const store = configureStore({
-    reducer: createRootReducer(),
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+  reducer: createRootReducer(),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
 export default store;
