@@ -11,8 +11,6 @@ import {
 } from '../../redux/selectors/heroClassesSelector';
 import { fetchHeroClasses, setSelectedHeroClass } from '../../redux/reducers/heroClassesReducer';
 import logoSrc from '../../assets/images/choice/logo.png';
-import leftHeroesSrc from '../../assets/images/choice/choice-background-left-heroes.png';
-import rightHeroesSrc from '../../assets/images/choice/choice-background-right-heroes.png';
 
 const Choice: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -58,9 +56,6 @@ const Choice: React.FC = () => {
 
   return (
     <Box className='choice-wrapper'>
-      <img className='left-heroes' src={leftHeroesSrc} alt='' />
-      <img className='right-heroes' src={rightHeroesSrc} alt='' />
-
       <Container maxWidth='md' style={{ height: '100%' }}>
         <form className='choice-form' onSubmit={handleSubmitChoice}>
           <div className='logo-wrapper'>
