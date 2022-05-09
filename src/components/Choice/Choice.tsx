@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { mapsStateSelector, hasNoSelectedMapSelector } from '../../redux/selectors/mapsSelector';
 import { fetchMaps, setSelectedMap } from '../../redux/reducers/mapsReducer';
 import { useAppSelector, useAppDispatch } from '../../store';
-import CustomAutocomplete from '../../utils/CustomAutocomplete';
+import CustomAutocomplete from '../../utils/CustomAutocomplete/CustomAutocomplete';
 import { useNavigate } from 'react-router-dom';
 import {
   hasNoSelectedHeroClassSelector,
@@ -11,6 +11,7 @@ import {
 } from '../../redux/selectors/heroClassesSelector';
 import { fetchHeroClasses, setSelectedHeroClass } from '../../redux/reducers/heroClassesReducer';
 import logoSrc from '../../assets/images/choice/logo.png';
+import { fetchHeroes } from '../../redux/reducers/heroesReducer';
 
 const Choice: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -51,6 +52,8 @@ const Choice: React.FC = () => {
 
   const handleSubmitChoice = (e: React.FormEvent) => {
     e.preventDefault();
+
+    dispatch(fetchHeroes({ map: selectedMap.label, className: selectedClass.label }));
     navigate('/picked');
   };
 
