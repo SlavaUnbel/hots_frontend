@@ -10,6 +10,9 @@ import {
   heroClassesStateSelector,
 } from '../../redux/selectors/heroClassesSelector';
 import { fetchHeroClasses, setSelectedHeroClass } from '../../redux/reducers/heroClassesReducer';
+import logoSrc from '../../assets/images/choice/logo.png';
+import leftHeroesSrc from '../../assets/images/choice/choice-background-left-heroes.png';
+import rightHeroesSrc from '../../assets/images/choice/choice-background-right-heroes.png';
 
 const Choice: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -26,9 +29,6 @@ const Choice: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const logoSrc = `${process.env.PUBLIC_URL}/assets/logo.png`;
-  const leftHeroesSrc = `${process.env.PUBLIC_URL}/assets/choice-background-left-heroes.png`;
-  const rightHeroesSrc = `${process.env.PUBLIC_URL}/assets/choice-background-right-heroes.png`;
   const isDisabled = hasNoMapSelected || hasNoHeroClassSelected;
 
   useEffect(() => {
