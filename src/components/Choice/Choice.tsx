@@ -10,6 +10,7 @@ import {
   heroClassesStateSelector,
 } from '../../redux/selectors/heroClassesSelector';
 import { fetchHeroClasses, setSelectedHeroClass } from '../../redux/reducers/heroClassesReducer';
+import logoSrc from '../../assets/images/choice/logo.png';
 
 const Choice: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -26,9 +27,6 @@ const Choice: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const logoSrc = `${process.env.PUBLIC_URL}/assets/logo.png`;
-  const leftHeroesSrc = `${process.env.PUBLIC_URL}/assets/choice-background-left-heroes.png`;
-  const rightHeroesSrc = `${process.env.PUBLIC_URL}/assets/choice-background-right-heroes.png`;
   const isDisabled = hasNoMapSelected || hasNoHeroClassSelected;
 
   useEffect(() => {
@@ -58,9 +56,6 @@ const Choice: React.FC = () => {
 
   return (
     <Box className='choice-wrapper'>
-      <img className='left-heroes' src={leftHeroesSrc} alt='' />
-      <img className='right-heroes' src={rightHeroesSrc} alt='' />
-
       <Container maxWidth='md' style={{ height: '100%' }}>
         <form className='choice-form' onSubmit={handleSubmitChoice}>
           <div className='logo-wrapper'>
