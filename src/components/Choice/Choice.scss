@@ -4,18 +4,26 @@
     background: url(../../assets/images/choice/choice-background.png) no-repeat center bottom/cover;
     position: relative;
 
-    &::before {
-        content: url(../../assets/images/choice/choice-background-left-heroes.png);
+    .choice-wrapper-left-heroes {
+        background: url(../../assets/images/choice/choice-background-left-heroes.png) no-repeat center bottom;
         position: absolute;
         bottom: 0;
         left: 0;
+
+        img {
+            visibility: hidden;
+        }
     }
 
-    &::after {
-        content: url(../../assets/images/choice/choice-background-right-heroes.png);
+    .choice-wrapper-right-heroes {
+        background: url(../../assets/images/choice/choice-background-right-heroes.png) no-repeat center bottom;
         position: absolute;
         bottom: 0;
         right: 0;
+
+        img {
+            visibility: hidden;
+        }
     }
 
     .choice-form {
